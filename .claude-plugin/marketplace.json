@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "instagram-edits-agent-skills",
+  "description": "Agent skills for editing Instagram Reels in Instagram Edits for Mac through its MCP automation server.",
+  "owner": {
+    "name": "TaricaTarica",
+    "url": "https://github.com/TaricaTarica"
+  },
+  "plugins": [
+    {
+      "name": "instagram-edits-agent-skills",
+      "description": "The complete agent skill set for Instagram Edits for Mac: rough cut, hooks, captions, polish, audio, color, montage, cover, variants, QA.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

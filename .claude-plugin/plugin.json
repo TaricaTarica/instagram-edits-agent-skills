@@ -1,0 +1,13 @@
+{
+  "name": "instagram-edits-agent-skills",
+  "version": "0.1.0",
+  "description": "The complete agent skill set for Instagram Edits for Mac: edit Instagram Reels with AI through the Edits MCP automation server — Cut Silences, hooks, auto captions, zooms, B-roll, sound, color, montage, cover, Trial Reel variants, QA and export.",
+  "author": {
+    "name": "TaricaTarica",
+    "url": "https://github.com/TaricaTarica"
+  },
+  "homepage": "https://github.com/TaricaTarica/instagram-edits-agent-skills",
+  "repository": "https://github.com/TaricaTarica/instagram-edits-agent-skills",
+  "license": "MIT",
+  "keywords": ["instagram-edits", "edits-for-mac", "instagram-reels", "reels", "video-editing", "agent-skills", "claude-skills", "mcp", "captions", "content-creators"]
+}
