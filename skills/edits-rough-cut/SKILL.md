@@ -11,9 +11,10 @@ Read `edits-operate` first if you have not driven Edits in this session. If the 
 
 ## 1. Inventory and transcript
 
-1. Footage must be under `~/Movies/`. `addMedia(path, audioKind="")` puts a take on the main (magnetic) track.
+1. Footage must be under `~/Movies/`. `addMedia(path, audioKind="")` puts a take on the main (magnetic) track (`audioKind` is required; `""` for footage).
+   Look at 3–4 source frames (`captureFrame`) before planning: phone takes often have **burned-in captions or text** from the recording app. If so, plan to crop them out with a zoom (see `edits-polish`) or place new captions where they won't double up, and tell the user.
 2. `transcribeClip(id, language, mergeSplitWords=true)` → every word with `start`/`end` in timeline seconds, plus `lines` (phrases). A 34 s take transcribes in ~15 s.
-3. `findPauses(id, path="", start=0, duration=<clip>, minDuration=0.3, thresholdDb=-35)` → near-silent stretches. Use it to cross-check the transcript: the last word of a phrase often carries trailing silence the transcript hides.
+3. `findPauses(id, path="", start=0, duration=<clip length from clips>, minDuration=0.3, thresholdDb=-35)` → near-silent stretches (`duration` must be the real length; 0 fails). Use it to cross-check the transcript: the last word of a phrase often carries trailing silence the transcript hides.
 4. Spot-check one or two word timings with `captureFrame`/listening before trusting them across the whole clip.
 
 ## 2. Decide the cuts (plan before touching the timeline)
@@ -29,7 +30,7 @@ Build an edit decision list (EDL) in your head or in `edit-report.md`: keep-rang
 | extra-fast | 0.15 s | ~0.05 s | rapid-fire lists, hype |
 
 **Rules that keep it human:**
-- Never cut inside a word. Land each cut point with `quietPoint(id, seconds, window=0.3)` — it returns the quietest 10 ms near your target.
+- Never cut inside a word. Land each cut point with `quietPoint(id, seconds, window)` — it returns the quietest 10 ms near your target. Keep `window` smaller than the gap you're cutting in, and check the result falls between the previous word's `end` and the next word's `start`; a wide window can return a point inside the next word.
 - Pad cut edges 30–200 ms; timestamps can drift 50–100 ms, and clipped consonants sound robotic.
 - Leave a deliberate 0.35–0.4 s pause right before a punchline, reveal or key number. Silence there is emphasis, not waste.
 - Remove filler-only words: en "um, uh, like (as filler), you know", es "eh, em, este, o sea (cuando no aporta), tipo", pt "é, hum, tipo, né". Keep verbal tics that carry the creator's voice when `edits-style.md` says so.

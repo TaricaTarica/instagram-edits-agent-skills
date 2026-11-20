@@ -16,7 +16,7 @@ Edits for Mac ships its own MCP server (Settings → Automation → **Enable Aut
 
 ## The tool list follows the screen
 
-- `appState` tells you the screen: `home`, `editor` or `loading`.
+- `appState` tells you the screen: `home`, `editor` or `loading`. In the editor it also returns every available action (~60 KB) — read only the `screen` field.
 - Home has ~32 tools (projects, new/open/duplicate/delete, `.mcomp` import/export, catalogs). The editor has ~274 (timeline, text, captions, color, audio, analysis, export).
 - To get editor tools: `projects` → `openProject(id)` or `newProject`. Some clients don't refresh the tool list on their own; if editor tools are missing after opening a project, re-list tools or start a new session.
 - Calling a tool from the other screen returns `unknown tool (not in current manifest)`. Check `appState`, reopen the project and continue — element ids survive.
@@ -25,7 +25,7 @@ Edits for Mac ships its own MCP server (Settings → Automation → **Enable Aut
 ## Discover, don't guess
 
 - `getCapabilities` → conventions, catalog kinds with counts, and recipes. Read it once per session.
-- `listCatalogKinds` / `listCatalog(kind, query, category, cursor, limit)` / `getCatalogItem` → exact ids for filters (77), effects (148), LUTs (16), transitions (51), text animations (77), text presets, caption styles (73), fonts (380), emphasis styles (5), mask shapes (5), speed-curve presets (8).
+- `listCatalogKinds` / `listCatalog(kind, query, category, cursor, limit)` / `getCatalogItem` → exact ids for filters (77), effects (148), LUTs (16), transitions (51), text animations (77), text presets, caption styles (39 in the catalog; `listCaptionStyles` returns 73 because it also lists text presets), fonts (380), emphasis styles (5), mask shapes (5), speed-curve presets (8).
 - Wrong enum values return an error that lists the valid ones (e.g. `resolutionType must be one of ["720p","HD","2K","4K"]`). Use that instead of guessing twice.
 - Many apply tools accept `dryRun: true` — validate before mutating when unsure.
 
@@ -45,8 +45,9 @@ Edits for Mac ships its own MCP server (Settings → Automation → **Enable Aut
 
 ## Working safely on the user's projects
 
-- Before editing an existing project, `duplicateProject` on the home screen and work on the copy; name it clearly. The original stays untouched until the user approves.
-- `undo` / `redo` exist and are cheap — use them to back out of a bad experiment rather than rebuilding.
+- Before editing an existing project, `duplicateProject` on the home screen and work on the copy; name it clearly. The original stays untouched until the user approves. Element ids are kept in the duplicate. The home grid may show a stale duration for a while — trust `state`/`clips` inside the project.
+- `undo` / `redo` exist, but an undo step doesn't always map to the call you expect (it has reverted a different transform, or left a shape in place). After any undo, read back with `getElement` / `elements` and fix by hand if needed.
+- Required params are often not obvious from the schema: `addMedia` always needs `audioKind` (`""` for footage, or `music` / `soundEffect` / `voiceover`); `setTransform` always needs `keyframes` (`clear`, `offsetAll` or `reject`); analysis tools need a real `duration` (0 fails with "could not read audio").
 - `saveProject` after each stage. Ask before `deleteProject`.
 - **There is no publish, share or schedule tool.** Posting happens in Edits' own share screen (Trial Reels, tags, location, cover). Hand that step to the user; never claim a Reel was posted.
 
@@ -54,7 +55,8 @@ Edits for Mac ships its own MCP server (Settings → Automation → **Enable Aut
 
 - `captureFrame(atSeconds | times="1,4.5,9", maxWidth)` renders the exact edited frame. Fast; use it after every visual change.
 - `frameSheet(times, columns, cellWidth)` with an empty `id` returns a labelled contact sheet of the edit (also saved as PNG).
-- `previewVideo(startSeconds, durationSeconds ≤10, frameCount ≤12)` → poll `previewVideoStatus` → `previewVideoFrames(resultId)` for motion checks (zooms, animations).
+- `previewVideo(startSeconds, durationSeconds ≤10, frameCount ≤12)` for motion checks (zooms, animations). It often returns frames right away; if it returns only a `resultId`, poll `previewVideoStatus` → `previewVideoFrames(resultId)`.
+- `captureFrame` returns images inline but no file. When a script needs a file, use `frameSheet(times="<t>", columns=1, cellWidth=1080)` — it saves a PNG and returns its path (with a small time label burned in).
 - Screenshots of the app window go stale and miss overlays; avoid them.
 
 ## Export

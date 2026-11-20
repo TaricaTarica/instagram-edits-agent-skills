@@ -16,7 +16,7 @@ An edit isn't done when the tools return `ok` — it's done when the rendered Re
   - each overlay, zoom and title;
   - 2–3 random midpoints.
 - Motion checks with `previewVideo(startSeconds, durationSeconds≤10, frameCount≤12)` on zooms, animated text and transitions.
-- Safe zone: save a frame (`captureFrame(maxWidth=1080)` or the PNG path `frameSheet` returns) and run
+- Safe zone: get a frame file with `frameSheet(times="<t>", columns=1, cellWidth=1080)` (it returns the PNG path; `captureFrame` returns no file) and run
   `python3 scripts/safe_zone_overlay.py <frame.png> <out.png>` — it draws the Reels UI zones (top 210, bottom 340, right 100 px at 1080×1920; bottom 420 px "caution" band) so you can see collisions. Nothing important (captions, hook, faces' eyes/mouth, on-screen UI being explained) may sit inside them.
 
 Checklist: captions readable and spelled right · nothing covers eyes or mouth · no caption under an overlay · zooms don't cut the head or go soft · consistent fonts after caption splits · no leftover temporary elements · ending lands.
@@ -40,13 +40,15 @@ export(path="/Users/<name>/Movies/<project>/export/<name>.mp4")
 exportStatus  (poll until complete)
 ```
 
-All of resolutionType, aspectRatio and quality are required or the export never starts. Use 4K (`resolutionType="4K"`, `resolution="2160x3840"`) only if the user asks; Instagram recompresses anyway. Exports through the server have come out at 60 fps despite `frameRate=30` — the gate below reports it.
+All of resolutionType, aspectRatio and quality are required or the export never starts. Expect roughly 40–45 s of export time for a 30–35 s Reel at 1080p. Use 4K (`resolutionType="4K"`, `resolution="2160x3840"`) only if the user asks; Instagram recompresses anyway. Exports through the server have come out at 60 fps despite `frameRate=30` (Instagram accepts 60); pass `--expect-fps 30` to the gate if 30 matters.
 
 ## 5. Validate the file
 
 ```
-python3 scripts/export_gate.py /path/to/export.mp4 [--max-seconds 90] [--target-lufs -14]
+python3 scripts/export_gate.py /path/to/export.mp4 [--max-seconds 90] [--target-lufs -14] [--expect-fps 30]
 ```
+
+If Pillow fails with an "incompatible architecture" error on Apple silicon (Python running under Rosetta), run the script with `arch -arm64 python3 …`.
 
 Checks with ffprobe/ffmpeg: 9:16 vertical at ≥1080×1920, video and audio streams present, audio not silent, duration within limits, integrated loudness and true peak near target, codec and frame rate reported. Exit code 0 = pass; it prints one line per check. Requires ffmpeg on PATH; if missing, say so and check what you can with `probeMedia(path)` and `loudness(path)` in Edits.
 

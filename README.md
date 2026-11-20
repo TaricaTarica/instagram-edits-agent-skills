@@ -4,6 +4,8 @@
 
 Edits for Mac gives agents the *tools* (274 of them). These skills give them the *craft*: what to cut, how long a hook should stay on screen, where captions are safe from Instagram's UI, how loud a Reel should be, and in which order to do it all so nothing breaks.
 
+> End-to-end tested: a 34 s raw take → cut, hook, captions, zooms, SFX, color, −14 LUFS audio, QA and a 1080×1920 export (every gate check passing), plus a Trial Reel variant, in about 16 minutes of agent time.
+>
 > Tested with **Edits for Mac 454** (automation schema `2026.10.19-1`) on **2026-11-20**. Unofficial — not affiliated with or endorsed by Meta or Instagram.
 
 ```bash
@@ -22,7 +24,7 @@ npx skills add TaricaTarica/instagram-edits-agent-skills
 | Long footage | [`edits-clip-pick`](skills/edits-clip-pick/SKILL.md) | Finds and scores the best 15–55 s moments in podcasts, lives, interviews |
 | Cut | [`edits-rough-cut`](skills/edits-rough-cut/SKILL.md) | Word-accurate silence and filler removal, bad takes, pace presets |
 | Hook | [`edits-hook`](skills/edits-hook/SKILL.md) | First 3 seconds: cold open, on-screen hook text, 3 hook options |
-| Captions | [`edits-captions`](skills/edits-captions/SKILL.md) | Auto captions, 73 styles, keyword emphasis, text fixes, safe zone |
+| Captions | [`edits-captions`](skills/edits-captions/SKILL.md) | Auto captions, 39 caption styles, keyword emphasis, sync checks, safe zone |
 | Polish | [`edits-polish`](skills/edits-polish/SKILL.md) | Punch-ins, slow push-ins, face-aware zooms, B-roll overlays, SFX |
 | Audio | [`edits-audio`](skills/edits-audio/SKILL.md) | Noise/hum cleanup, −14 LUFS, matching takes, music beds and ducking |
 | Color | [`edits-color`](skills/edits-color/SKILL.md) | Exposure, white balance, skin, LUTs/filters, matching cameras |

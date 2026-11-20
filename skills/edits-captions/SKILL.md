@@ -18,7 +18,7 @@ Do captions **after** the rough cut (cuts ripple captions) and before overlays (
 | Phrase | 5–7 per line, max 2 lines | `Simple`, `Soft Lines`, `Fade In` | calm, story, educational |
 | Themed | varies | `Retro future`, `Hot take`, `PRINT SHOP`, `Jazz club`… | personality pieces, sparingly |
 
-Rules of thumb: 2–3 words for high energy, 3–5 conversational, 4–6 calm. A caption shorter than 0.35 s on screen can't be read. Full list: `listCaptionStyles` (73 presets).
+Rules of thumb: 2–3 words for high energy, 3–5 conversational, 4–6 calm. A caption shorter than 0.35 s on screen can't be read. Full list: `listCaptionStyles` (73 entries: 39 caption styles plus text presets).
 
 ## 2. Build them — order matters
 
@@ -26,9 +26,18 @@ Several caption tools reset typography, so follow this order:
 
 1. `generateCaptions(language, source="video", curseWords=false)` — ~10 s for 30 s of speech. Running it again creates a **second full set** on top; delete the old one with `deleteCaptions(id)` per caption (or no id for all) first.
 2. `setCaptionStyle(style)` — no `id` restyles every caption; pass `id` to restyle one. Restyling resets fonts.
-3. `splitCaption(id, time)` / `mergeCaptions(id, direction)` — fix phrase breaks: break on punctuation or pauses ≥0.15 s, never split a name or number. Splitting resets the font of both halves.
-4. `editCaption(id, text)` on every caption that needs it (see §3).
-5. Fonts and colors last: `setTextFont(id, family)` (ids from `listCatalog(kind="font", query=...)`; `listFonts` returns only the first page), `setTextStyle(id, size, color, bold, alignment)`, `setEmphasis(id, style, color)` for outline/pill backgrounds.
+3. `splitCaption(id, time)` / `mergeCaptions(id, direction="left"|"right")` — fix phrase breaks: break on punctuation or pauses ≥0.15 s, never split a name or number. Splitting resets the font of both halves.
+4. `editCaption(id, text)` on every caption that needs it (see §3). `editCaption` resets color and size, so it must come before step 5.
+5. Fonts and colors last: `setTextFont(id, family)` (ids from `listCatalog(kind="font", query=...)`; `listFonts` returns only the first page), `setTextStyle(id, size, color, bold, alignment)`, `setEmphasis(id, style, color)` for outlines. Box-style caption presets (`Word Highlight Box`…) ignore `backgroundPill`; pick a box style instead.
+
+## Check sync before styling
+
+Caption timing comes from the composition audio. After a rough cut, word times can come out early (over a second has been seen on the first clip). Spot-check: `captureFrame` at the start time of 3–4 captions spread across the Reel and compare with the transcript's word times.
+
+If a span is off:
+- Delete those captions (`deleteCaptions(id)`) and run `generateCaptions` again **after** the cut is final — then delete the duplicates it creates elsewhere.
+- If it is still off, rebuild that span with `addText` elements timed from `transcribeClip` word times and styled like the captions.
+- Don't `move` or `trim` karaoke captions to fix timing: the word highlighting keeps the old word times (text vanishes outside them), and `trim` after `move` has extended captions by seconds.
 
 `captions` lists every caption with id, text and times; `getElement(id)` shows the applied style, font, size and color.
 
@@ -54,6 +63,8 @@ Instagram covers the top ~210 px (header), bottom ~340–420 px (caption, audio,
 - Edits' default caption position puts two-line captions right on the edge of the zone Instagram covers with long post captions — check with `edits-qa`'s overlay script and raise them (≈0.70) when lines wrap.
 - Move them with `setTextPosition(id, x, y)` — apply to every caption.
 - Never cover the mouth or eyes. If the subject sits low in frame, raise captions above the chest rather than lower.
+- If captions must go to the top (e.g. burned-in text at the bottom), hide or shorten the captions that overlap the on-screen hook during its 2.5–3.5 s — never stack hook text and captions in the same band.
+- Style flags like hiding punctuation don't always apply; remove punctuation in the text with `editCaption` if the style needs it.
 - When an overlay or screen recording shows UI, move captions lower (still inside the zone) for that span so they don't hide what's being explained.
 - On busy or light backgrounds (white shirt, bright wall) add `setEmphasis(style="outline")` or a pill background; white on white with a thin stroke is unreadable.
 

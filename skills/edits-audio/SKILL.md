@@ -10,7 +10,7 @@ People forgive soft video; they swipe on bad audio. The voice must be clear, eve
 ## 1. Measure
 
 - `loudness(id, path="")` → integrated LUFS and sample peak of a clip (or a file/library item).
-- `audioLevels(id, path="", start, duration, hop)` → RMS envelope, noise floor and speech level. A noise floor less than ~20 dB below speech needs cleanup.
+- `audioLevels(id, path="", start, duration, hop)` → RMS envelope, noise floor and speech level. Its whole-clip noise-floor estimate is unreliable on short talking heads (it can read 8 dB below speech when the real floor is 30 dB below). Measure the floor **inside a real pause** from `findPauses` (start/duration of that pause). Clean up only if that floor is less than ~20–25 dB below speech.
 - `audioSpectrum(id, path="", start, duration, minHz=40, maxHz=8000, limit=5, minProminenceDb=6, resolutionHz=5)` → steady tones (mains hum at 50/60 Hz and harmonics, fan whine).
 - `getSound(id)` → current volume dB and Voice Enhance settings.
 
@@ -25,9 +25,21 @@ Pick the lightest fix that works; listen-check by reading levels again after eac
 | Hum / whine | `processAudio(id, mode="replace", chain='[{"type":"notch","hz":60}]')` (add harmonics if `audioSpectrum` shows them) |
 | Rumble, handling noise | `{"type":"highpass","hz":80}` |
 | Heavy room/background voices | `{"type":"isolation"}` (voice isolation; check it doesn't sound underwater) |
-| Overall level | `{"type":"normalize","lufs":-14}` |
+| Overall level | gain per clip (see "Reaching −14 LUFS" below); `{"type":"normalize","lufs":-16}` only for quiet, even speech |
 
 `processAudio` renders a new audio version of the clip and keeps the picture; `chain` is a JSON array of steps: `highpass`, `lowpass`, `notch` and `eq` need `hz`; `gain` needs `db`; `normalize` takes `lufs`; `isolation` takes none. Missing params return an error naming them. Without `lufs`, normalize targets −16. `mode="add"` appends to the existing chain. Each call reports `beforeLufs`/`afterLufs`. Order steps: highpass → notch → isolation → eq → normalize last.
+
+Two traps:
+- **`normalize` has no limiter.** Normalizing a dynamic voice to −14 LUFS can push peaks above 0 dBFS (+5 dB has been seen) and clip on export. There is no `limiter` step; unknown keys are ignored silently.
+- **`mode="replace"` re-renders from the previous render**, not the original audio, and `chain="[]"` doesn't revert. Use `undo` (then verify) to go back.
+
+## Reaching −14 LUFS without clipping
+
+1. Clean first (table above) — without normalize.
+2. `loudness(id)` per clip → set `setSound(id, volumeDb = −14 − measured, reduceNoise, enhanceVoice)`. Voice Enhance (~30) adds density, which raises loudness without raising peaks much.
+3. Export a short test (or the full Reel) and run `edits-qa/scripts/export_gate.py`: integrated −14 ± 1 and true peak ≤ −1 dBTP.
+4. If peaks are hot, lower every clip by the overshoot (e.g. −1.5 dB) and accept −15/−16 LUFS — a clean −15 beats a clipped −14.
+Delete test exports afterwards.
 
 Over-processing is worse than mild noise: reduceNoise at 100 or isolation on a clean recording makes voices robotic.
 
@@ -37,7 +49,7 @@ When the Reel mixes takes or recording days, measure each kept clip's LUFS with 
 
 ## 4. Target loudness
 
-Aim for **−14 LUFS integrated, peaks ≤ −1 dBFS** for the finished Reel — it matches what platforms normalize to and sounds full on phones. Normalize the voice first; music adds a little on top, so re-measure after mixing (`loudness` on the exported file in `edits-qa`).
+Aim for **−14 LUFS integrated, true peak ≤ −1 dBTP** for the finished Reel — it matches what platforms normalize to and sounds full on phones. Set the voice level first (recipe above); music adds a little on top, so re-measure after mixing on the exported file (`edits-qa`).
 
 ## 5. Music
 

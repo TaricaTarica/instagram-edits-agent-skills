@@ -24,7 +24,7 @@ Specialists: `edits-rough-cut`, `edits-hook`, `edits-captions`, `edits-polish`, 
 ## 2. Full pipeline
 
 1. **Inventory.** Which files, how long, which language, target length, where it will be posted (Reel / Trial Reel), deadline. Copy footage to `~/Movies/<project>/`. If `edits-style.md` exists in the project or creator folder, read it — it overrides defaults everywhere.
-2. **Transcribe and pre-scan.** Put the take on a timeline (`newProject` → `setTitle` → `addMedia`), `transcribeClip`, `findPauses`. Note the strongest line, stumbles, repeated takes, weak opening.
+2. **Transcribe and pre-scan.** Put the take on a timeline (`newProject` → `setTitle` → `addMedia(path, audioKind="")`), `transcribeClip`, `findPauses`, and `captureFrame` at a few times. Note the strongest line, stumbles, repeated takes, weak opening, and any burned-in text or captions in the source.
 3. **Ask only what blocks you** (one message): goal of the Reel, must-keep moments, music yes/no, anything off-limits. Skip questions the style file or the request already answers.
 4. **Plan — approval gate.** 4–8 sentences: the hook choice (and whether it needs a cold open), what gets cut, caption style, polish level, audio/music, target duration, variants if any. Wait for a yes. A wrong plan costs a sentence; a wrong edit costs the user's trust.
 5. **Work on a copy.** If editing an existing project, `duplicateProject` first. Then in this order (each step ripples into the next):
@@ -45,4 +45,4 @@ Specialists: `edits-rough-cut`, `edits-hook`, `edits-captions`, `edits-polish`, 
 
 ## 4. Typical timings (Edits 454, Apple silicon)
 
-Transcription ~15 s per 30 s of speech · captions ~10 s per 30 s · a rough cut with dozens of cuts is one `splitAt` call · `captureFrame` near-instant · export ~10 s for 20–30 s at 1080p. A full talking-head pipeline usually takes minutes of machine time; the approval gates are the long part, and they're worth it.
+Transcription ~15 s per 30 s of speech · captions ~10 s per 30 s · a rough cut with dozens of cuts is one `splitAt` call · `captureFrame` near-instant · export ~40–45 s for a 33 s Reel at 1080p. A test run of the full pipeline on a 34 s talking head (cut, hook, color, audio to −14 LUFS, karaoke captions, 3 zooms, 2 SFX, QA, export, plus one variant) took about 16 minutes end to end. Most of that went to verifying captions and audio, which is the part worth spending time on.

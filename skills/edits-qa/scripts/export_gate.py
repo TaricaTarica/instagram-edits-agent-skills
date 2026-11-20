@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate an exported Reel before it is handed to the creator.
 
-Usage: python3 export_gate.py <video> [--max-seconds 90] [--target-lufs -14] [--lufs-tolerance 2]
+Usage: python3 export_gate.py <video> [--max-seconds 90] [--target-lufs -14] [--lufs-tolerance 2] [--expect-fps 30]
 
 Checks: vertical 9:16 >= 1080x1920, video + audio streams, audio not silent,
 duration limit, integrated loudness and true peak. Requires ffprobe and ffmpeg on PATH.
@@ -120,6 +120,13 @@ def check_frame(info: StreamInfo) -> Check:
     return Check("frame 9:16", Status.PASS, detail)
 
 
+def check_fps(info: StreamInfo, expected: float) -> Check:
+    detail = f"{info.fps:.2f} fps (expected {expected:.0f})"
+    if abs(info.fps - expected) > 0.5:
+        return Check("frame rate", Status.WARN, detail)
+    return Check("frame rate", Status.PASS, detail)
+
+
 def check_duration(info: StreamInfo, max_seconds: float) -> Check:
     detail = f"{info.duration:.2f}s (limit {max_seconds:.0f}s)"
     if info.duration <= 0:
@@ -156,14 +163,20 @@ def check_peak(loud: Loudness) -> Check:
     return Check("true peak", Status.PASS, detail)
 
 
-def run_checks(path: Path, max_seconds: float, target: float, tolerance: float) -> list[Check]:
+def run_checks(path: Path, args: argparse.Namespace) -> list[Check]:
     info = probe(path)
-    checks = [check_frame(info), check_duration(info, max_seconds), check_audio_present(info)]
+    checks = [check_frame(info), check_duration(info, args.max_seconds), check_audio_present(info)]
+    if args.expect_fps is not None:
+        checks.append(check_fps(info, args.expect_fps))
     if not info.has_audio:
         return checks
 
     loud = measure_loudness(path)
-    return checks + [check_not_silent(loud), check_loudness(loud, target, tolerance), check_peak(loud)]
+    return checks + [
+        check_not_silent(loud),
+        check_loudness(loud, args.target_lufs, args.lufs_tolerance),
+        check_peak(loud),
+    ]
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
@@ -172,6 +185,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--max-seconds", type=float, default=90.0)
     parser.add_argument("--target-lufs", type=float, default=-14.0)
     parser.add_argument("--lufs-tolerance", type=float, default=2.0)
+    parser.add_argument("--expect-fps", type=float, default=None)
     return parser.parse_args(argv)
 
 
@@ -185,7 +199,7 @@ def main(argv: list[str]) -> int:
         return 1
 
     try:
-        checks = run_checks(args.video, args.max_seconds, args.target_lufs, args.lufs_tolerance)
+        checks = run_checks(args.video, args)
     except ProbeError as error:
         print(f"FAIL  probe: {error}")
         return 1

@@ -27,7 +27,10 @@ From the transcript, mark: the hook word, each new idea, twists ("and then I rea
 
 **How:**
 - Find the face: `detectSubjects(id, kinds=["face"], sampleEvery=0.5)` → box centre P = (px, py). For scale s, keep the face where it is by setting the clip centre to `x = 0.5 − s·(px − 0.5)`, `y = 0.5 − s·(py − 0.5)`, clamped to `0.5 ± (s − 1)/2` so no edge shows. Bias eyes into the upper third.
-- Static zoom for a segment: split at the beat (`splitAt`), then `setTransform(id, keyframes="clear", x, y, scale, allowBeyondCanvas=false)` on that piece. Avoid `focusX/focusY` — they have been observed to invert the y axis; set x/y yourself.
+- Static zoom for a segment: split at the beat (`splitAt`), then `setTransform(id, keyframes="clear", x, y, scale, allowBeyondCanvas=false)` on that piece (`keyframes` is required: `clear`, `offsetAll` or `reject`). Avoid `focusX/focusY` — they have been observed to invert the y axis; set x/y yourself.
+- **Split first, keyframe after.** `splitAt` on a clip that already has keyframes copies all of them to every piece, shifted (some to negative times). If you must split a keyframed clip, run `setTransform(keyframes="clear", …)` on each piece and re-add only what it needs.
+- Prefer `setTransform` scale over `setCrop` for zooms: `setCrop` scales the content far more than its rect suggests (a 0.74 rect ≈ 1.8×).
+- Cropping out burned-in text at the bottom of a phone take: scale ~1.3–1.4 with the centre raised (y ≈ 0.65–0.7) so the text leaves the frame; then re-check where the mouth lands before placing captions.
 - Animated zoom: `setTransformKeyframe(id, time, scale, x, y)` twice (start and end), or `setTransformKeyframes(id, keyframes=JSON)` with clip-relative times; ease with `setKeyframeEasing(id, seconds, preset)` (on Edits 454: 2 = ease-out, 3 = ease-in-out). Keyframe times must fall inside the element; if rejected, the error lists valid times — read back with `getTransformKeyframes`.
 - `autoReframe(ids, subject="largestFace", motion="follow")` keeps a moving subject centred (useful for 16:9 sources or walking shots) in one undo step.
 - Verify every zoom with `captureFrame`: head not cut at the top, captions not on the mouth, no soft/blurry upscale (4K source tolerates ~1.25×, 1080p source ~1.12×).
