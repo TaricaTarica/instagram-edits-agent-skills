@@ -1,6 +1,6 @@
 ---
 name: edits-polish
-description: Adds motion and retention polish to a Reel in Instagram Edits for Mac — punch-in zooms, slow push-ins and zoom-outs with keyframes, auto-reframe on the face, pattern interrupts, B-roll and screenshot overlays with entrance animation and dim scrims, cutout stickers, emoji, and subtle sound effects (whoosh, click) timed to visible events. Use whenever the user asks for zooms, punch-ins, "more dynamic", "it feels static", B-roll, overlays, images on screen, sound effects, SFX, transitions between shots, or "make it look like a pro editor did it".
+description: "Adds motion and retention polish to a Reel in Instagram Edits for Mac — punch-in zooms, slow push-ins and zoom-outs with keyframes, auto-reframe on the face, pattern interrupts, B-roll and screenshot overlays with entrance animation and dim scrims, cutout stickers, emoji, and subtle sound effects (whoosh, click) timed to visible events. Use whenever the user asks for zooms, punch-ins, \"more dynamic\", \"it feels static\", B-roll, overlays, images on screen, sound effects, SFX, transitions between shots, or \"make it look like a pro editor did it\"."
 ---
 
 # Polish: zooms, B-roll and sound effects

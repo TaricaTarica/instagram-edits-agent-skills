@@ -1,6 +1,6 @@
 ---
 name: edits-color
-description: Color corrects and grades Reels in Instagram Edits for Mac — fixes exposure, white balance and skin tones, matches clips from different cameras, applies LUTs and filters with restraint, and measures the result on rendered frames. Uses adjustment layers, setColorGrade, setColorWheel, setHSL, setCurve, applyLUT and applyFilter. Use whenever the user mentions color, grading, LUT, filter, "too dark", "washed out", "looks orange/blue", skin tones, warmer/cooler, cinematic look, or matching footage — or wants a consistent look across Reels.
+description: "Color corrects and grades Reels in Instagram Edits for Mac — fixes exposure, white balance and skin tones, matches clips from different cameras, applies LUTs and filters with restraint, and measures the result on rendered frames. Uses adjustment layers, setColorGrade, setColorWheel, setHSL, setCurve, applyLUT and applyFilter. Use whenever the user mentions color, grading, LUT, filter, \"too dark\", \"washed out\", \"looks orange/blue\", skin tones, warmer/cooler, cinematic look, or matching footage — or wants a consistent look across Reels."
 ---
 
 # Color in Edits

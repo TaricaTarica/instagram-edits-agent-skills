@@ -1,6 +1,6 @@
 ---
 name: edits-qa
-description: Quality check and export for Reels made in Instagram Edits for Mac — reviews rendered frames around every cut and at the start and end, checks the Instagram safe zone, caption collisions, framing and loudness, fixes issues in up to 3 passes, sets the export preset (1080×1920 SDR), exports, validates the file and writes an edit report for the creator. Use before delivering or exporting any Edits project, when the user says "export", "check it", "is it ready", "review the edit", or after any other edits-* skill finishes.
+description: "Quality check and export for Reels made in Instagram Edits for Mac — reviews rendered frames around every cut and at the start and end, checks the Instagram safe zone, caption collisions, framing and loudness, fixes issues in up to 3 passes, sets the export preset (1080×1920 SDR), exports, validates the file and writes an edit report for the creator. Use before delivering or exporting any Edits project, when the user says \"export\", \"check it\", \"is it ready\", \"review the edit\", or after any other edits-* skill finishes."
 ---
 
 # QA, export and handoff

@@ -1,6 +1,6 @@
 ---
 name: edits-cover
-description: Creates the cover (thumbnail) for an Instagram Reel from an Instagram Edits for Mac project — picks the strongest frame (clear expression, eyes open, readable action), hides captions, adds a short cover title, text-behind-subject looks with cutouts, and keeps everything inside the 3:4 profile-grid crop. Use whenever the user asks for a cover, thumbnail, portada, capa, "the image people see on my profile grid", or wants the grid to look consistent.
+description: "Creates the cover (thumbnail) for an Instagram Reel from an Instagram Edits for Mac project — picks the strongest frame (clear expression, eyes open, readable action), hides captions, adds a short cover title, text-behind-subject looks with cutouts, and keeps everything inside the 3:4 profile-grid crop. Use whenever the user asks for a cover, thumbnail, portada, capa, \"the image people see on my profile grid\", or wants the grid to look consistent."
 ---
 
 # Reel cover

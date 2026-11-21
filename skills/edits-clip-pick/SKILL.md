@@ -1,6 +1,6 @@
 ---
 name: edits-clip-pick
-description: Finds the best Reel-sized moments inside long footage (podcasts, interviews, lives, webinars, long talking-head takes) and cuts them into separate Reels in Instagram Edits for Mac — transcribes, scores candidate clips on hook, coherence, emotion, value and payoff, snaps boundaries to sentences, and builds the chosen ones. The in-Edits equivalent of AI clipping tools. Use whenever the user wants to "find the best parts", clip a podcast or long video into Reels, repurpose long-form content, get highlights, or asks which moments would go viral.
+description: "Finds the best Reel-sized moments inside long footage (podcasts, interviews, lives, webinars, long talking-head takes) and cuts them into separate Reels in Instagram Edits for Mac — transcribes, scores candidate clips on hook, coherence, emotion, value and payoff, snaps boundaries to sentences, and builds the chosen ones. The in-Edits equivalent of AI clipping tools. Use whenever the user wants to \"find the best parts\", clip a podcast or long video into Reels, repurpose long-form content, get highlights, or asks which moments would go viral."
 ---
 
 # Clip picking: long footage → Reels

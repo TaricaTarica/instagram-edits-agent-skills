@@ -1,6 +1,6 @@
 ---
 name: edits-audio
-description: Makes a Reel sound professional in Instagram Edits for Mac — voice first: noise reduction and voice enhance, hum and room fixes, loudness normalization to −14 LUFS, matching levels between takes, then music beds from the Edits library or the user's own tracks with ducking and fades, and the licensed-music export caveats. Uses getSound/setSound, processAudio, loudness, audioLevels, audioSpectrum, listMusicTracks, addSongToComposition and setDucking. Use whenever the user mentions audio, sound quality, noise, echo, hum, volume, "too quiet/too loud", loudness, LUFS, background music, music bed, ducking, or fades — or before exporting any Reel.
+description: "Makes a Reel sound professional in Instagram Edits for Mac — voice first: noise reduction and voice enhance, hum and room fixes, loudness normalization to −14 LUFS, matching levels between takes, then music beds from the Edits library or the user's own tracks with ducking and fades, and the licensed-music export caveats. Uses getSound/setSound, processAudio, loudness, audioLevels, audioSpectrum, listMusicTracks, addSongToComposition and setDucking. Use whenever the user mentions audio, sound quality, noise, echo, hum, volume, \"too quiet/too loud\", loudness, LUFS, background music, music bed, ducking, or fades — or before exporting any Reel."
 ---
 
 # Audio in Edits: voice first, then music

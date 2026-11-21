@@ -1,6 +1,6 @@
 ---
 name: edits-style-learn
-description: Learns a creator's editing style from their best Reels or reference videos and writes it to edits-style.md, a style profile every other edits-* skill follows — caption archetype, fonts, colors and position, cut pace, zoom and SFX density, hook format, color look, music habits, length, and what performs on their account. Use when the user says "edit it like my other videos", "learn my style", "match this creator", shares reference Reels, wants consistent branding across Reels, or before the first edit for a new creator.
+description: "Learns a creator's editing style from their best Reels or reference videos and writes it to edits-style.md, a style profile every other edits-* skill follows — caption archetype, fonts, colors and position, cut pace, zoom and SFX density, hook format, color look, music habits, length, and what performs on their account. Use when the user says \"edit it like my other videos\", \"learn my style\", \"match this creator\", shares reference Reels, wants consistent branding across Reels, or before the first edit for a new creator."
 ---
 
 # Learn a creator's style → `edits-style.md`

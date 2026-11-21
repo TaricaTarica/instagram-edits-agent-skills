@@ -1,6 +1,6 @@
 ---
 name: edits-rough-cut
-description: Builds the base cut of a talking-head Reel inside Instagram Edits for Mac — cut silences (like Edits' "Cut Silences" but word-accurate), remove filler words (um, uh, eh, o sea, tipo), drop false starts and bad takes (keep the last good take), tighten pacing to natural/fast/extra-fast and keep deliberate pauses before punchlines. Uses transcribeClip, findPauses, quietPoint and splitAt. Use whenever the user asks to cut silences, remove pauses or fillers, tighten, jump-cut, clean up a raw take, "make it snappier", or starts editing raw footage into a Reel in Edits.
+description: "Builds the base cut of a talking-head Reel inside Instagram Edits for Mac — cut silences (like Edits' \"Cut Silences\" but word-accurate), remove filler words (um, uh, eh, o sea, tipo), drop false starts and bad takes (keep the last good take), tighten pacing to natural/fast/extra-fast and keep deliberate pauses before punchlines. Uses transcribeClip, findPauses, quietPoint and splitAt. Use whenever the user asks to cut silences, remove pauses or fillers, tighten, jump-cut, clean up a raw take, \"make it snappier\", or starts editing raw footage into a Reel in Edits."
 ---
 
 # Rough cut in Edits: silences, fillers and bad takes

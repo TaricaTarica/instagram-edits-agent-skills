@@ -1,6 +1,6 @@
 ---
 name: edits-hook
-description: Designs and builds the first 3 seconds of an Instagram Reel in Instagram Edits for Mac — finds the strongest tension line in the transcript, moves it to the opening (cold open), adds on-screen hook text from frame 0, avoids slow or static openings and clickbait, and proposes 3 genuinely different hook options. Use whenever the user asks for a hook, a better opening, "people swipe away", low 3-second retention, a title or text at the start of the Reel, or wants to test different openings — even when they only say "make the start stronger".
+description: "Designs and builds the first 3 seconds of an Instagram Reel in Instagram Edits for Mac — finds the strongest tension line in the transcript, moves it to the opening (cold open), adds on-screen hook text from frame 0, avoids slow or static openings and clickbait, and proposes 3 genuinely different hook options. Use whenever the user asks for a hook, a better opening, \"people swipe away\", low 3-second retention, a title or text at the start of the Reel, or wants to test different openings — even when they only say \"make the start stronger\"."
 ---
 
 # The hook: the first 3 seconds

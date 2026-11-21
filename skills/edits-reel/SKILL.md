@@ -1,6 +1,6 @@
 ---
 name: edits-reel
-description: Start here to edit an Instagram Reel end to end with Instagram Edits for Mac (Edits desktop) through its MCP automation server — turns raw footage into a finished, exported Reel: plan, rough cut and Cut Silences, hook, auto captions, zooms and B-roll, sound, color, cover, variants for Trial Reels, QA and an edit report, with approval checkpoints. Routes small requests to the right edits-* skill. Use whenever the user says "edit this into a Reel", "edit my reel", "make a Reel from this video", "use Edits", "do it in Edits", hands over raw takes, or asks Claude/Codex/Cursor to edit Instagram videos — even without naming the app.
+description: "Start here to edit an Instagram Reel end to end with Instagram Edits for Mac (Edits desktop) through its MCP automation server — turns raw footage into a finished, exported Reel: plan, rough cut and Cut Silences, hook, auto captions, zooms and B-roll, sound, color, cover, variants for Trial Reels, QA and an edit report, with approval checkpoints. Routes small requests to the right edits-* skill. Use whenever the user says \"edit this into a Reel\", \"edit my reel\", \"make a Reel from this video\", \"use Edits\", \"do it in Edits\", hands over raw takes, or asks Claude/Codex/Cursor to edit Instagram videos — even without naming the app."
 ---
 
 # Edit a Reel in Instagram Edits (router + pipeline)

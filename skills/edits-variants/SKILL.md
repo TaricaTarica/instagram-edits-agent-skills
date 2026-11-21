@@ -1,6 +1,6 @@
 ---
 name: edits-variants
-description: Turns one recording into several genuinely different Reel versions in Instagram Edits for Mac for A/B testing and Instagram Trial Reels — Story, Punch-first and Short cuts with different hooks, order, length and sound — using duplicateProject, then explains how to publish and compare them (3-second hold, watch time, shares, saves). Use whenever the user asks for variants, versions, A/B tests, trial reels, "test different hooks", multiple cuts of the same video, or repurposing one take into several Reels.
+description: "Turns one recording into several genuinely different Reel versions in Instagram Edits for Mac for A/B testing and Instagram Trial Reels — Story, Punch-first and Short cuts with different hooks, order, length and sound — using duplicateProject, then explains how to publish and compare them (3-second hold, watch time, shares, saves). Use whenever the user asks for variants, versions, A/B tests, trial reels, \"test different hooks\", multiple cuts of the same video, or repurposing one take into several Reels."
 ---
 
 # Variants and Trial Reels

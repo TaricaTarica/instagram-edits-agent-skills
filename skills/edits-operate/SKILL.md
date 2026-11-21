@@ -1,6 +1,6 @@
 ---
 name: edits-operate
-description: Operating manual for driving Instagram Edits for Mac (Edits desktop) through its built-in MCP automation server — connecting, discovering tools and catalogs, the sandbox and path rules, time/canvas conventions, HDR vs SDR, export presets and the traps that make calls fail silently. Use this before the first Edits tool call in a session, whenever an Edits call errors ("not in current manifest", "Sandbox bookmark unavailable", 401/403, export never starts), or when the user asks what Edits can do, how to connect Claude/Codex/Cursor to Edits, or how to set up the Edits MCP. The other edits-* skills assume this one.
+description: "Operating manual for driving Instagram Edits for Mac (Edits desktop) through its built-in MCP automation server — connecting, discovering tools and catalogs, the sandbox and path rules, time/canvas conventions, HDR vs SDR, export presets and the traps that make calls fail silently. Use this before the first Edits tool call in a session, whenever an Edits call errors (\"not in current manifest\", \"Sandbox bookmark unavailable\", 401/403, export never starts), or when the user asks what Edits can do, how to connect Claude/Codex/Cursor to Edits, or how to set up the Edits MCP. The other edits-* skills assume this one."
 ---
 
 # Operating Instagram Edits for Mac through its MCP

@@ -1,6 +1,6 @@
 ---
 name: edits-montage
-description: Builds music-driven Reels in Instagram Edits for Mac — beat-synced montages, cut-to-the-beat B-roll, travel/product/event recaps, speed ramps (montage, hero, bullet, flash), shot detection on long clips, and picking the best moments by what's in each shot. Uses beatMarkers, audioOnsets, detectShots, describeClip, splitAt and setSpeedCurve. Use whenever the user wants a montage, edit to the beat, "sync to the music", a recap or highlight reel, trending-audio style edits, speed ramps or slow-motion moments — anything that isn't a single talking head.
+description: "Builds music-driven Reels in Instagram Edits for Mac — beat-synced montages, cut-to-the-beat B-roll, travel/product/event recaps, speed ramps (montage, hero, bullet, flash), shot detection on long clips, and picking the best moments by what's in each shot. Uses beatMarkers, audioOnsets, detectShots, describeClip, splitAt and setSpeedCurve. Use whenever the user wants a montage, edit to the beat, \"sync to the music\", a recap or highlight reel, trending-audio style edits, speed ramps or slow-motion moments — anything that isn't a single talking head."
 ---
 
 # Montage and beat-synced Reels
