@@ -47,6 +47,7 @@ Edits for Mac ships its own MCP server (Settings → Automation → **Enable Aut
 
 - Before editing an existing project, `duplicateProject` on the home screen and work on the copy; name it clearly. The original stays untouched until the user approves. Element ids are kept in the duplicate. The home grid may show a stale duration for a while — trust `state`/`clips` inside the project.
 - `undo` / `redo` exist, but an undo step doesn't always map to the call you expect (it has reverted a different transform, or left a shape in place). After any undo, read back with `getElement` / `elements` and fix by hand if needed.
+- `splitAt` replaces the element with new pieces that all get **new ids** (the first piece too). Re-read `clips` / `elements` before acting on that element again.
 - Required params are often not obvious from the schema: `addMedia` always needs `audioKind` (`""` for footage, or `music` / `soundEffect` / `voiceover`); `setTransform` always needs `keyframes` (`clear`, `offsetAll` or `reject`); analysis tools need a real `duration` (0 fails with "could not read audio").
 - `saveProject` after each stage. Ask before `deleteProject`.
 - **There is no publish, share or schedule tool.** Posting happens in Edits' own share screen (Trial Reels, tags, location, cover). Hand that step to the user; never claim a Reel was posted.

@@ -1,0 +1,29 @@
+name: Edits update broke a skill
+description: A tool, param or behavior changed after an Edits for Mac update
+labels: ["edits-update"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Edits version and schemaVersion
+      placeholder: "Edits 455 · 2026.11.02-1"
+    validations:
+      required: true
+  - type: input
+    id: skill
+    attributes:
+      label: Skill and line
+      placeholder: "edits-captions §2 step 3"
+    validations:
+      required: true
+  - type: textarea
+    id: call
+    attributes:
+      label: Tool call and exact error text
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What worked instead (if anything)

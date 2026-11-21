@@ -1,6 +1,6 @@
 ---
 name: edits-captions
-description: Adds and styles auto captions (subtitles) on Instagram Reels inside Instagram Edits for Mac — generate captions, pick one of 73 caption styles (one-word pop, karaoke word highlight, two-line phrase), emphasize keywords, fix misheard words and brand names, keep captions inside the Reels safe zone and readable on any background, bilingual captions. Use whenever the user mentions captions, subtitles, subtítulos, legendas, "words on screen", highlighting keywords, caption style or font, or captions covering the face or the Instagram UI — even if they don't say "Edits".
+description: Adds and styles auto captions (subtitles) on Instagram Reels inside Instagram Edits for Mac — generate captions, pick one of 39 caption styles (one-word pop, karaoke word highlight, two-line phrase), emphasize keywords, fix misheard words and brand names, keep captions inside the Reels safe zone and readable on any background, bilingual captions. Use whenever the user mentions captions, subtitles, subtítulos, legendas, "words on screen", highlighting keywords, caption style or font, or captions covering the face or the Instagram UI — even if they don't say "Edits".
 ---
 
 # Captions in Edits

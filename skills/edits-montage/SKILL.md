@@ -18,13 +18,14 @@ A montage works when cuts land on the music and each shot earns its place. Choos
 
 - Pick the song with the user (see `edits-audio` for library search and the licensed-music export caveat). Start on a `highlights` point.
 - `beatMarkers(id)` on the music element lists visible markers; tune with `setBeatDensity(id, density="low"|"medium"|"high")` (`off`, `lowest` … `extreme`).
-- If `beatMarkers` returns nothing on the user's own track, use `audioOnsets(id, path="", start, duration)` → onsets and best-fit tempo; place markers with `addBeatMarker(id, seconds)`.
+- If `beatMarkers` returns nothing (common on imported tracks, even after `setBeatDensity`), use `audioOnsets(id, path="", start, duration)` → `onsets` and `bpm`. Beat period P = 60/bpm. Find the grid phase: try offsets 0…P in 5 ms steps and keep the one where the most onsets fall within ±35 ms of a grid line. Then trim the music's start by that phase so beats land on multiples of P from 0 (or place markers with `addBeatMarker(id, seconds)`).
 - Cut on the downbeat for big changes, every beat or every 2 beats for energy. Don't make every cut metronomic: hold a beautiful shot for 2–4 beats, then rapid cuts on a build.
 
 ## 3. Assemble
 
 1. Add clips in order: `addMedia(path, audioKind="")` per clip, or `addMediaPanelItemsToTimeline(aliasIds, sourceIn, sourceOut)` for exact source ranges.
-2. Trim each to its beat window: `trim(id, side, deltaSeconds)` or `splitAt` + `delete`. Use `slipClip(id, deltaSeconds)` to change which moment plays without moving the cut.
+2. Trim each to its beat window. `trim(side="left")` works on main-track clips, but on Edits 454 `trim(side="right")` returned ok without shortening them — use `splitAt(id, [start + window])` and delete the tail pieces instead (select them all, one `delete`). Use `slipClip(id, deltaSeconds)` to change which moment plays without moving the cut.
+   `splitAt` gives the pieces **new ids** (including the first piece) — re-read `clips`/`elements` before the next call on that element.
 3. `reorderClip(id, position)` to rearrange; `clips` to read back timings and confirm cut times match markers (± 1 frame at 30 fps ≈ 0.033 s).
 4. Mute camera audio on B-roll if it fights the music (`setVolume(id, 0)`), or keep a little ambience at 0.1–0.2 for texture.
 
@@ -39,6 +40,7 @@ A montage works when cuts land on the music and each shot earns its place. Choos
 ## 5. Text and look
 
 - Minimal on-screen text: a 3–7 word title in the first 2 s, optional location/date labels. Captions only if there's speech.
+- At `addText` size ~32, a line fits about 16–18 characters before wrapping; break lines yourself with `\n`. Word-by-word animations (`fligPop` and similar) and `scaleIn` leave the text incomplete or translucent for the first second — on short titles use `none` and let the cut be the motion. Check with `captureFrame` at +0.3 s.
 - One look for the whole piece (see `edits-color`) so shots from different cameras feel like one film.
 
 ## 6. Check

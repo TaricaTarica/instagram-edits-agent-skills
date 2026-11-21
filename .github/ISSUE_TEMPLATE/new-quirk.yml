@@ -1,0 +1,22 @@
+name: New quirk or better default
+description: Something the skills should know, or a number that works better
+labels: ["quirk"]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      placeholder: "edits-polish"
+    validations:
+      required: true
+  - type: textarea
+    id: observation
+    attributes:
+      label: What you observed or measured
+      description: Footage type, values, frames/LUFS/retention numbers
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Edits version

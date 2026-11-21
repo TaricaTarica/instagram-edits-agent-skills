@@ -2,6 +2,11 @@
 
 **Instagram Edits Agent Skills is the complete, open-source agent skill set for Instagram Edits for Mac**: 14 `SKILL.md` skills that teach an AI agent how to edit Instagram Reels inside Edits through its built-in MCP automation server — Cut Silences and fillers, hooks, auto captions, zooms and B-roll, sound, color, beat-synced montages, covers, Trial Reel variants, QA and export.
 
+[![skills.sh](https://skills.sh/b/TaricaTarica/instagram-edits-agent-skills)](https://skills.sh/TaricaTarica/instagram-edits-agent-skills)
+
+<p align="center"><a href="https://github.com/TaricaTarica/instagram-edits-agent-skills/releases/download/v0.1.0/demo-montage.mp4"><img src="assets/demo-montage.gif" width="300" alt="A 17-second vertical summer montage edited by an AI agent inside Edits for Mac: eight stock clips cut every four beats of the music, slow push-ins, an opening title and a closing card"></a></p>
+<p align="center"><sub>One request, a real agent session inside Edits for Mac using these skills. Edits found no beat markers in the track, so the agent measured it from audio onsets (114.8 BPM), cut eight clips every four beats, added titles and push-ins, checked rendered frames, balanced loudness and exported. <a href="https://github.com/TaricaTarica/instagram-edits-agent-skills/releases/download/v0.1.0/demo-montage.mp4">Watch with sound</a>.</sub></p>
+
 Edits for Mac gives agents the *tools* (274 of them). These skills give them the *craft*: what to cut, how long a hook should stay on screen, where captions are safe from Instagram's UI, how loud a Reel should be, and in which order to do it all so nothing breaks.
 
 > End-to-end tested: a 34 s raw take → cut, hook, captions, zooms, SFX, color, −14 LUFS audio, QA and a 1080×1920 export (every gate check passing), plus a Trial Reel variant, in about 16 minutes of agent time.
@@ -114,7 +119,7 @@ Yes. Edits generates captions natively; `edits-captions` picks a style, fixes mi
 Ask "cut the silences" — `edits-rough-cut` uses the transcript and Edits' pause detection to remove dead air and fillers without clipping words.
 
 **What are the best Claude skills for video editing?**
-For Instagram Reels in Edits, this set covers every stage. For code-rendered video, Remotion's official skills and FFmpeg-based skills are the usual choices.
+For Instagram Reels edited in Edits for Mac, this set covers every stage — from raw take to export — with numbers you can tune and approval checkpoints. It needs no rendering pipeline: the agent works inside the editor you already use.
 
 **Does Instagram Edits have an API or MCP server?**
 There's no public API, but Edits for Mac includes a local MCP automation server (Settings → Automation) that agents can use.
@@ -130,7 +135,9 @@ No — the automation server exists only in Edits for Mac (Apple silicon).
 
 ## Credits
 
-Craft heuristics were informed by public work on agent video editing — Remotion's agent skills, browser-use's video-use, claude-shorts, OpusClip and Submagic's public documentation, and creator-education resources on hooks and retention — and verified against the live Edits server. All text here is original.
+Craft heuristics were informed by public work on agent-driven video editing and by creator-education resources on hooks and retention, then verified against the live Edits server. All text here is original.
+
+Demo footage: stock clips from [Mixkit](https://mixkit.co/license/#videoFree) (Mixkit Stock Video Free License). Music: "Summer Fun" by Ahjay Stelino, [Mixkit](https://mixkit.co/license/#musicFree) (Mixkit Stock Music Free License).
 
 ## En español / Em português
 

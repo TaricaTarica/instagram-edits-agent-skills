@@ -43,7 +43,7 @@ If the best tension line sits later in the take:
 - On screen 2.5–3.5 s (about the length of the first spoken sentence), then gone.
 - Position: upper area y ≈ 0.17–0.25, inside the safe zone, never on the face. One keyword in the accent font/color, rest plain.
 - Build: `addText(atSeconds=0, text, duration=3)` → `setTextFont`, `setTextStyle(size, color)`, `setTextPosition(id, 0.5, 0.2)`. Two-line hooks: one text element with `\n`, not two stacked elements.
-- Animation: none, or a fast one. `fadeIn` takes about 2 s, which hides the hook during the very seconds it matters. If you add one, `captureFrame(atSeconds=0.3)` must already show readable text.
+- Animation: `none` by default. `fadeIn` takes about 2 s, `scaleIn` stays translucent for about a second, and word-by-word animations show half the line — all of them hide the hook during the very seconds it matters. If you add one, `captureFrame(atSeconds=0.3)` must already show readable text.
 - `addText` size scale differs from captions: around 36–42 fits two lines of 2–4 words on a 9:16 canvas; bigger values wrap to 3–4 lines and cover the face. Verify with `captureFrame(atSeconds=1)`.
 - The hook text owns its band for its 2.5–3.5 s. If captions sit in the same area, hide or delay the overlapping captions (see `edits-captions`).
 
