@@ -20,20 +20,20 @@ Website: [taricatarica.github.io/instagram-edits-agent-skills](https://taricatar
 
 | Stage | Skill | What the agent does in Edits |
 |---|---|---|
-| Start here | [`edits-reel`](skills/edits-reel/SKILL.md) | Routes the request; runs the full pipeline with approval checkpoints |
-| Setup | [`edits-operate`](skills/edits-operate/SKILL.md) | Connects, discovers tools/catalogs, sandbox and path rules, export presets, troubleshooting |
-| Style | [`edits-style-learn`](skills/edits-style-learn/SKILL.md) | Learns a creator's style from reference Reels → `edits-style.md` every skill follows |
-| Long footage | [`edits-clip-pick`](skills/edits-clip-pick/SKILL.md) | Finds and scores the best 15–55 s moments in podcasts, lives, interviews |
-| Cut | [`edits-rough-cut`](skills/edits-rough-cut/SKILL.md) | Word-accurate silence and filler removal, bad takes, pace presets |
-| Hook | [`edits-hook`](skills/edits-hook/SKILL.md) | First 3 seconds: cold open, on-screen hook text, 3 hook options |
-| Captions | [`edits-captions`](skills/edits-captions/SKILL.md) | Auto captions, 39 caption styles, keyword emphasis, sync checks, safe zone |
-| Polish | [`edits-polish`](skills/edits-polish/SKILL.md) | Punch-ins, slow push-ins, face-aware zooms, B-roll overlays, SFX |
-| Audio | [`edits-audio`](skills/edits-audio/SKILL.md) | Noise/hum cleanup, −14 LUFS, matching takes, music beds and ducking |
-| Color | [`edits-color`](skills/edits-color/SKILL.md) | Exposure, white balance, skin, LUTs/filters, matching cameras |
-| Montage | [`edits-montage`](skills/edits-montage/SKILL.md) | Beat-synced cuts, shot detection, speed ramps, recaps |
-| Cover | [`edits-cover`](skills/edits-cover/SKILL.md) | Best frame, cover title, text-behind-subject, 3:4 grid-safe |
-| Variants | [`edits-variants`](skills/edits-variants/SKILL.md) | Story / Punch-first / Short versions for Trial Reels and A/B tests |
-| QA + export | [`edits-qa`](skills/edits-qa/SKILL.md) | Frame review, safe-zone overlay, fix loop, export, file validation, edit report |
+| Start here | [`edits-reel`](plugin/skills/edits-reel/SKILL.md) | Routes the request; runs the full pipeline with approval checkpoints |
+| Setup | [`edits-operate`](plugin/skills/edits-operate/SKILL.md) | Connects, discovers tools/catalogs, sandbox and path rules, export presets, troubleshooting |
+| Style | [`edits-style-learn`](plugin/skills/edits-style-learn/SKILL.md) | Learns a creator's style from reference Reels → `edits-style.md` every skill follows |
+| Long footage | [`edits-clip-pick`](plugin/skills/edits-clip-pick/SKILL.md) | Finds and scores the best 15–55 s moments in podcasts, lives, interviews |
+| Cut | [`edits-rough-cut`](plugin/skills/edits-rough-cut/SKILL.md) | Word-accurate silence and filler removal, bad takes, pace presets |
+| Hook | [`edits-hook`](plugin/skills/edits-hook/SKILL.md) | First 3 seconds: cold open, on-screen hook text, 3 hook options |
+| Captions | [`edits-captions`](plugin/skills/edits-captions/SKILL.md) | Auto captions, 39 caption styles, keyword emphasis, sync checks, safe zone |
+| Polish | [`edits-polish`](plugin/skills/edits-polish/SKILL.md) | Punch-ins, slow push-ins, face-aware zooms, B-roll overlays, SFX |
+| Audio | [`edits-audio`](plugin/skills/edits-audio/SKILL.md) | Noise/hum cleanup, −14 LUFS, matching takes, music beds and ducking |
+| Color | [`edits-color`](plugin/skills/edits-color/SKILL.md) | Exposure, white balance, skin, LUTs/filters, matching cameras |
+| Montage | [`edits-montage`](plugin/skills/edits-montage/SKILL.md) | Beat-synced cuts, shot detection, speed ramps, recaps |
+| Cover | [`edits-cover`](plugin/skills/edits-cover/SKILL.md) | Best frame, cover title, text-behind-subject, 3:4 grid-safe |
+| Variants | [`edits-variants`](plugin/skills/edits-variants/SKILL.md) | Story / Punch-first / Short versions for Trial Reels and A/B tests |
+| QA + export | [`edits-qa`](plugin/skills/edits-qa/SKILL.md) | Frame review, safe-zone overlay, fix loop, export, file validation, edit report |
 
 Every skill works with tunable defaults (e.g. cut gaps > 0.3 s, captions centred at y ≈ 0.62–0.75, hook text 3–7 words for 2.5–3.5 s, −14 LUFS) that a creator's `edits-style.md` overrides.
 
@@ -59,9 +59,9 @@ npx skills add TaricaTarica/instagram-edits-agent-skills
 /plugin install instagram-edits-agent-skills@instagram-edits-agent-skills
 ```
 
-**Manual:** copy the folders in `skills/` to `~/.claude/skills/` (Claude Code), or to `.agents/skills/` in your project (Codex, Cursor and other agents that read the open Agent Skills format).
+**Manual:** copy the folders in `plugin/skills/` to `~/.claude/skills/` (Claude Code), or to `.agents/skills/` in your project (Codex, Cursor and other agents that read the open Agent Skills format).
 
-Optional: `ffmpeg` and Python 3 with Pillow for the two QA helper scripts. Everything else runs inside Edits.
+Optional: `ffmpeg` for the export check and safe-zone overlay in `edits-qa`. Everything else runs inside Edits.
 
 ## Example prompts: edit a Reel with AI
 

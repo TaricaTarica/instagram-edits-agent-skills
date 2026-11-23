@@ -37,7 +37,7 @@ Two traps:
 
 1. Clean first (table above) — without normalize.
 2. `loudness(id)` per clip → set `setSound(id, volumeDb = −14 − measured, reduceNoise, enhanceVoice)`. Voice Enhance (~30) adds density, which raises loudness without raising peaks much.
-3. Export a short test (or the full Reel) and run `edits-qa/scripts/export_gate.py`: integrated −14 ± 1 and true peak ≤ −1 dBTP.
+3. Export a short test (or the full Reel) and run the export gate in `edits-qa` (step 5): integrated −14 ± 1 and true peak ≤ −1 dBTP.
 4. If peaks are hot, lower every clip by the overshoot (e.g. −1.5 dB) and accept −15/−16 LUFS — a clean −15 beats a clipped −14.
 Delete test exports afterwards.
 

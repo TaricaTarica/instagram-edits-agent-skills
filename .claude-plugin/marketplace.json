@@ -10,7 +10,7 @@
     {
       "name": "instagram-edits-agent-skills",
       "description": "The complete agent skill set for Instagram Edits for Mac: rough cut, hooks, captions, polish, audio, color, montage, cover, variants, QA.",
-      "source": "./",
+      "source": "./plugin",
       "category": "productivity"
     }
   ]

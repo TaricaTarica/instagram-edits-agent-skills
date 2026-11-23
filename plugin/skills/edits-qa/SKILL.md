@@ -16,8 +16,11 @@ An edit isn't done when the tools return `ok` — it's done when the rendered Re
   - each overlay, zoom and title;
   - 2–3 random midpoints.
 - Motion checks with `previewVideo(startSeconds, durationSeconds≤10, frameCount≤12)` on zooms, animated text and transitions.
-- Safe zone: get a frame file with `frameSheet(times="<t>", columns=1, cellWidth=1080)` (it returns the PNG path; `captureFrame` returns no file) and run
-  `python3 scripts/safe_zone_overlay.py <frame.png> <out.png>` — it draws the Reels UI zones (top 210, bottom 340, right 100 px at 1080×1920; bottom 420 px "caution" band) so you can see collisions. Nothing important (captions, hook, faces' eyes/mouth, on-screen UI being explained) may sit inside them.
+- Safe zone: get a frame file with `frameSheet(times="<t>", columns=1, cellWidth=1080)` (it returns the PNG path; `captureFrame` returns no file), then draw the Reels UI zones on it with ffmpeg (sizes are defined at 1080×1920 and scale to any 9:16 frame):
+  ```
+  ffmpeg -v error -y -i <frame.png> -vf "drawbox=x=0:y=0:w=iw:h=ih*210/1920:color=red@0.4:t=fill,drawbox=x=iw*980/1080:y=ih*210/1920:w=iw*100/1080:h=ih*1370/1920:color=red@0.4:t=fill,drawbox=x=0:y=ih*1500/1920:w=iw:h=ih*80/1920:color=yellow@0.4:t=fill,drawbox=x=0:y=ih*1580/1920:w=iw:h=ih*340/1920:color=red@0.4:t=fill" <zones.png>
+  ```
+  Red = blocked: header (top 210 px), action rail (right 100 px), caption + audio + buttons (bottom 340 px). Yellow = caution: a long caption expands into the 80 px above. Read `<zones.png>` and look for collisions. Nothing important (captions, hook, faces' eyes/mouth, on-screen UI being explained) may sit inside the red zones. Without ffmpeg, judge the same zones by eye on the frame.
 
 Checklist: captions readable and spelled right · nothing covers eyes or mouth · no caption under an overlay · zooms don't cut the head or go soft · consistent fonts after caption splits · no leftover temporary elements · ending lands.
 
@@ -40,17 +43,32 @@ export(path="/Users/<name>/Movies/<project>/export/<name>.mp4")
 exportStatus  (poll until complete)
 ```
 
-All of resolutionType, aspectRatio and quality are required or the export never starts. Expect roughly 40–45 s of export time for a 30–35 s Reel at 1080p. Use 4K (`resolutionType="4K"`, `resolution="2160x3840"`) only if the user asks; Instagram recompresses anyway. Exports through the server have come out at 60 fps despite `frameRate=30` (Instagram accepts 60); pass `--expect-fps 30` to the gate if 30 matters.
+All of resolutionType, aspectRatio and quality are required or the export never starts. Expect roughly 40–45 s of export time for a 30–35 s Reel at 1080p. Use 4K (`resolutionType="4K"`, `resolution="2160x3840"`) only if the user asks; Instagram recompresses anyway. Exports through the server have come out at 60 fps despite `frameRate=30` (Instagram accepts 60); flag it in the gate if 30 matters.
 
 ## 5. Validate the file
 
+Run these four measurements on the export (ffmpeg and ffprobe must be on PATH):
+
 ```
-python3 scripts/export_gate.py /path/to/export.mp4 [--max-seconds 90] [--target-lufs -14] [--expect-fps 30]
+ffprobe -v error -select_streams v:0 -show_entries stream=width,height,codec_name,avg_frame_rate -show_entries format=duration -of default=nw=1 <export.mp4>
+ffprobe -v error -select_streams a -show_entries stream=codec_type -of csv=p=0 <export.mp4>
+ffmpeg -hide_banner -nostats -i <export.mp4> -af ebur128=peak=true -f null - 2>&1 | sed -n '/Summary:/,$p' | grep -E 'I:|Peak:'
+ffmpeg -hide_banner -nostats -i <export.mp4> -af volumedetect -f null - 2>&1 | grep mean_volume
 ```
 
-If Pillow fails with an "incompatible architecture" error on Apple silicon (Python running under Rosetta), run the script with `arch -arm64 python3 …`.
+Gate (report one line per check as PASS / WARN / FAIL):
 
-Checks with ffprobe/ffmpeg: 9:16 vertical at ≥1080×1920, video and audio streams present, audio not silent, duration within limits, integrated loudness and true peak near target, codec and frame rate reported. Exit code 0 = pass; it prints one line per check. Requires ffmpeg on PATH; if missing, say so and check what you can with `probeMedia(path)` and `loudness(path)` in Edits.
+| Check | PASS | WARN | FAIL |
+|---|---|---|---|
+| Frame | width/height within 0.01 of 9:16 and ≥ 1080×1920 | 9:16 but below 1080×1920 | not 9:16 |
+| Duration | > 0 and ≤ 90 s (or the creator's limit) | over the limit | 0 or missing |
+| Audio stream | the second command prints `audio` | — | prints nothing |
+| Not silent | `mean_volume` > −50 dB | — | ≤ −50 dB (licensed music dropped in export?) |
+| Loudness | `I:` within −14 ± 2 LUFS | outside that range | — |
+| True peak | `Peak:` ≤ −1 dBFS | above −1 dBFS | — |
+| Frame rate (only if 30 fps matters) | `avg_frame_rate` within 0.5 of 30 | otherwise | — |
+
+Any FAIL blocks the handoff; WARNs go in the report. Without ffmpeg, say so and check what you can with `probeMedia(path)` and `loudness(path)` in Edits.
 
 ## 6. Handoff report
 

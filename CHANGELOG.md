@@ -5,6 +5,8 @@
 First stable release. Same 14 skills as 0.1.0, tested end to end on Edits for Mac 454.
 
 - Added a project website (GitHub Pages) with setup guide and FAQ: https://taricatarica.github.io/instagram-edits-agent-skills/
+- The plugin now lives in `plugin/` (skills in `plugin/skills/`) so it can be listed in the Claude plugin directory; the marketplace points there.
+- `edits-qa` no longer ships Python scripts: the export gate and the safe-zone overlay are ffprobe/ffmpeg commands in the skill, with the same thresholds.
 
 ## 0.1.0 — 2026-11-20
 
