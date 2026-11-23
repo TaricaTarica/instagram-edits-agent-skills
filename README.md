@@ -12,6 +12,8 @@ Edits for Mac gives agents the *tools* (274 of them). These skills give them the
 npx skills add TaricaTarica/instagram-edits-agent-skills
 ```
 
+Website: [taricatarica.github.io/instagram-edits-agent-skills](https://taricatarica.github.io/instagram-edits-agent-skills/)
+
 ---
 
 ## What these agent skills do

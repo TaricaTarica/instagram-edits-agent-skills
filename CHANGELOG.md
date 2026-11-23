@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0 — 2026-11-22
+
+First stable release. Same 14 skills as 0.1.0, tested end to end on Edits for Mac 454.
+
+- Added a project website (GitHub Pages) with setup guide and FAQ: https://taricatarica.github.io/instagram-edits-agent-skills/
+
 ## 0.1.0 — 2026-11-20
 
 Tested with Edits for Mac 454, automation schema `2026.10.19-1` (32 home tools, 274 editor tools).
