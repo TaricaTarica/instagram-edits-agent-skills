@@ -18,7 +18,8 @@
 <meta name="twitter:title" content="Instagram Edits Agent Skills">
 <meta name="twitter:description" content="Let Claude Code, Codex or Cursor edit your Instagram Reels inside Edits for Mac.">
 <meta name="twitter:image" content="https://taricatarica.github.io/instagram-edits-agent-skills/og.png">
-<link rel="icon" href="icon.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -50,18 +51,18 @@
 </script>
 <style>
   :root {
-    --bg: #ffffff; --fg: #141419; --muted: #5b5b66; --card: #f4f4f7; --line: #e3e3ea;
-    --yellow: #ffc700; --blue: #2b9ed6; --pink: #e8456a; --code-bg: #141419; --code-fg: #f0f0f5;
+    --bg: #ffffff; --fg: #0a0a0a; --muted: #5f5f66; --card: #f5f5f5; --line: #e6e6e6;
+    --accent: #e0461a; --code-bg: #0a0a0a; --code-fg: #fafafa; --code-accent: #ff5a1f;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #141419; --fg: #f0f0f5; --muted: #a4a4b0; --card: #1e1e25; --line: #2c2c35;
-      --blue: #5ac8fa; --pink: #ff6482; --code-bg: #0c0c10;
+      --bg: #0a0a0a; --fg: #fafafa; --muted: #9a9aa0; --card: #151515; --line: #262626;
+      --accent: #ff5a1f; --code-bg: #151515;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #141419; --fg: #f0f0f5; --muted: #a4a4b0; --card: #1e1e25; --line: #2c2c35;
-    --blue: #5ac8fa; --pink: #ff6482; --code-bg: #0c0c10;
+    --bg: #0a0a0a; --fg: #fafafa; --muted: #9a9aa0; --card: #151515; --line: #262626;
+    --accent: #ff5a1f; --code-bg: #151515;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif; }
@@ -73,14 +74,16 @@
   h3 { font-size: 17px; margin: 0 0 4px; }
   p { margin: 0 0 14px; }
   .lede { font-size: 20px; color: var(--muted); }
-  .bar { display: flex; gap: 6px; margin: 20px 0 28px; }
-  .bar span { height: 6px; border-radius: 3px; }
+  .label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 64px 0 6px; }
+  .label + h2 { margin-top: 0; }
+  .lede { margin-bottom: 28px; }
+  pre .p { color: var(--code-accent); }
   pre { background: var(--code-bg); color: var(--code-fg); padding: 16px 18px; border-radius: 12px; overflow-x: auto; font: 15px/1.5 ui-monospace, "SF Mono", Menlo, monospace; margin: 0 0 14px; }
   code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em; }
   .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 0; }
   .btn { display: inline-block; padding: 11px 18px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--fg); }
   .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-  a { color: var(--blue); }
+  a { color: var(--accent); }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
   .card p { margin: 0; color: var(--muted); font-size: 15px; }
@@ -89,7 +92,7 @@
   details { border-bottom: 1px solid var(--line); padding: 12px 0; }
   summary { cursor: pointer; font-weight: 600; }
   details p { margin: 8px 0 0; color: var(--muted); }
-  .note { font-size: 14px; color: var(--muted); border-left: 3px solid var(--yellow); padding-left: 12px; }
+  .note { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 12px; }
   footer { margin-top: 64px; font-size: 14px; color: var(--muted); }
 </style>
 </head>
@@ -100,14 +103,14 @@
     <h1>Instagram Edits Agent Skills</h1>
   </header>
   <p class="lede">Open-source agent skills that let <strong>Claude Code, Codex and Cursor</strong> edit Instagram Reels inside <strong>Instagram Edits for Mac</strong> through its built-in MCP automation server.</p>
-  <div class="bar" aria-hidden="true"><span style="width:64px;background:var(--yellow)"></span><span style="width:32px;background:var(--blue)"></span><span style="width:48px;background:var(--pink)"></span></div>
 
-  <pre><code>npx skills add TaricaTarica/instagram-edits-agent-skills</code></pre>
+  <pre><code><span class="p">❯</span> npx skills add TaricaTarica/instagram-edits-agent-skills</code></pre>
   <div class="cta">
     <a class="btn primary" href="https://github.com/TaricaTarica/instagram-edits-agent-skills">View on GitHub</a>
     <a class="btn" href="#setup">Connect Claude to Edits</a>
   </div>
 
+  <span class="label">14 skills</span>
   <h2>What the agent does</h2>
   <p>Edits for Mac gives agents the tools (274 of them). These 14 skills give them the craft: what to cut, how long a hook should stay on screen, where captions are safe from Instagram's UI, how loud a Reel should be, and in which order to do it all.</p>
   <div class="grid">
@@ -128,6 +131,7 @@
   </div>
   <p class="note" style="margin-top:16px">Tested end to end: a 34 s raw take became a cut, captioned, color-graded Reel at −14 LUFS, exported at 1080×1920 with every QA check passing, in about 16 minutes of agent time.</p>
 
+  <span class="label">Setup</span>
   <h2 id="setup">How to connect Claude Code to Instagram Edits</h2>
   <ol>
     <li>Install <strong>Edits for Mac</strong> (free, Apple silicon) and sign in.</li>
@@ -135,11 +139,12 @@
     <li>Under <strong>Connect an AI client</strong>, copy the command for Claude Code, Codex, Cursor or ChatGPT and run it in your terminal. Keep the token out of chats.</li>
     <li>Install the skills and start a new agent session:</li>
   </ol>
-  <pre><code>npx skills add TaricaTarica/instagram-edits-agent-skills</code></pre>
+  <pre><code><span class="p">❯</span> npx skills add TaricaTarica/instagram-edits-agent-skills</code></pre>
   <p>Claude Code plugin instead:</p>
-  <pre><code>/plugin marketplace add TaricaTarica/instagram-edits-agent-skills
+  <pre><code><span class="p">❯</span> /plugin marketplace add TaricaTarica/instagram-edits-agent-skills
 /plugin install instagram-edits-agent-skills@instagram-edits-agent-skills</code></pre>
 
+  <span class="label">Use it</span>
   <h2>Example prompts</h2>
   <ul>
     <li>"Edit <code>~/Movies/launch/take2.mov</code> into a Reel in Edits. Fast pace, karaoke captions, no music."</li>
@@ -148,6 +153,7 @@
     <li>"Make 3 Trial Reel versions of this edit with different hooks."</li>
   </ul>
 
+  <span class="label">Questions</span>
   <h2>FAQ</h2>
   <details><summary>How do I edit Instagram Reels with Claude?</summary><p>Turn on the automation server in Edits for Mac, connect Claude Code, install these skills and ask "Edit this into a Reel in Edits." The <code>edits-reel</code> skill makes a plan, asks for your approval and runs the pipeline.</p></details>
   <details><summary>Is there a Claude skill or plugin for Instagram Edits?</summary><p>Yes. This project is both a Claude Code plugin and a set of open Agent Skills (<code>SKILL.md</code>) for Instagram Edits for Mac.</p></details>
