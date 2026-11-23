@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none">
   <rect width="1024" height="1024" rx="224" fill="#0A0A0A"/>
   <g transform="translate(117 112) scale(0.77)" stroke-width="84" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M400 190 H300 A100 100 0 0 0 214 239" stroke="#FAFAFA"/>
     <path d="M190 340 L390 512 L190 684" stroke="#FAFAFA"/>
-    <path d="M400 834 H300 A100 100 0 0 1 214 785" stroke="#FAFAFA"/>
     <path d="M512 150 V874" stroke="#FF5A1F"/>
     <path d="M624 190 H724 A110 110 0 0 1 834 300 V724 A110 110 0 0 1 724 834 H624" stroke="#FAFAFA"/>
   </g>
