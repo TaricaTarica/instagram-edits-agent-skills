@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://taricatarica.github.io/instagram-edits-agent-skills/sitemap.xml

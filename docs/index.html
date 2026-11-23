@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instagram Edits Agent Skills — edit Reels with Claude Code, Codex and Cursor</title>
+<meta name="description" content="Open-source agent skills for Instagram Edits for Mac. 14 SKILL.md skills that let Claude Code, Codex and Cursor edit Instagram Reels through the Edits MCP automation server: cut silences, hooks, auto captions, zooms, audio, color, variants and export.">
+<link rel="canonical" href="https://taricatarica.github.io/instagram-edits-agent-skills/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Instagram Edits Agent Skills">
+<meta property="og:description" content="Let Claude Code, Codex or Cursor edit your Instagram Reels inside Edits for Mac. 14 open-source agent skills.">
+<meta property="og:url" content="https://taricatarica.github.io/instagram-edits-agent-skills/">
+<meta property="og:image" content="https://taricatarica.github.io/instagram-edits-agent-skills/og.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Instagram Edits Agent Skills">
+<meta name="twitter:description" content="Let Claude Code, Codex or Cursor edit your Instagram Reels inside Edits for Mac.">
+<meta name="twitter:image" content="https://taricatarica.github.io/instagram-edits-agent-skills/og.png">
+<link rel="icon" href="icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "Instagram Edits Agent Skills",
+  "description": "Open-source agent skills (SKILL.md) for Instagram Edits for Mac that let AI agents edit Instagram Reels through the Edits MCP automation server.",
+  "codeRepository": "https://github.com/TaricaTarica/instagram-edits-agent-skills",
+  "url": "https://taricatarica.github.io/instagram-edits-agent-skills/",
+  "license": "https://opensource.org/licenses/MIT",
+  "programmingLanguage": "Markdown",
+  "runtimePlatform": ["Claude Code", "Codex", "Cursor", "Instagram Edits for Mac"],
+  "keywords": "instagram edits, edits for mac, agent skills, claude code, mcp, instagram reels, ai video editing, auto captions, cut silences",
+  "author": {"@type": "Person", "name": "TaricaTarica", "url": "https://github.com/TaricaTarica"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How do I edit Instagram Reels with Claude?", "acceptedAnswer": {"@type": "Answer", "text": "Turn on the automation server in Edits for Mac, connect Claude Code with the command Edits shows, install these skills with npx skills add TaricaTarica/instagram-edits-agent-skills, and ask: Edit this into a Reel in Edits."}},
+    {"@type": "Question", "name": "Is there a Claude skill or plugin for Instagram Edits?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Instagram Edits Agent Skills is a Claude Code plugin and a set of 14 open Agent Skills (SKILL.md) for Instagram Edits for Mac."}},
+    {"@type": "Question", "name": "How do I connect Claude Code to the Edits app on Mac?", "acceptedAnswer": {"@type": "Answer", "text": "In Edits, open Settings, then Automation, then Enable Automation Server. Copy the Claude Code command under Connect an AI client, run it in Terminal and start a new session."}},
+    {"@type": "Question", "name": "Does Instagram Edits have an API or MCP server?", "acceptedAnswer": {"@type": "Answer", "text": "There is no public API, but Edits for Mac includes a local MCP automation server (Settings, Automation) that AI agents can use."}},
+    {"@type": "Question", "name": "Can I use Codex, Cursor or ChatGPT with Instagram Edits?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Edits offers connect commands for Claude Code, Codex, Cursor and ChatGPT, and these skills follow the open Agent Skills format."}},
+    {"@type": "Question", "name": "Can Claude post or schedule Reels to Instagram?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Edits automation server has no publishing tool. The agent prepares the project and the export; you post from Edits."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #141419; --muted: #5b5b66; --card: #f4f4f7; --line: #e3e3ea;
+    --yellow: #ffc700; --blue: #2b9ed6; --pink: #e8456a; --code-bg: #141419; --code-fg: #f0f0f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141419; --fg: #f0f0f5; --muted: #a4a4b0; --card: #1e1e25; --line: #2c2c35;
+      --blue: #5ac8fa; --pink: #ff6482; --code-bg: #0c0c10;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141419; --fg: #f0f0f5; --muted: #a4a4b0; --card: #1e1e25; --line: #2c2c35;
+    --blue: #5ac8fa; --pink: #ff6482; --code-bg: #0c0c10;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 56px 16px 80px; }
+  header { display: flex; gap: 20px; align-items: center; margin-bottom: 28px; }
+  header img { width: 72px; height: 72px; border-radius: 16px; flex-shrink: 0; }
+  h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+  h2 { font-size: 24px; margin: 56px 0 12px; letter-spacing: -0.01em; }
+  h3 { font-size: 17px; margin: 0 0 4px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 20px; color: var(--muted); }
+  .bar { display: flex; gap: 6px; margin: 20px 0 28px; }
+  .bar span { height: 6px; border-radius: 3px; }
+  pre { background: var(--code-bg); color: var(--code-fg); padding: 16px 18px; border-radius: 12px; overflow-x: auto; font: 15px/1.5 ui-monospace, "SF Mono", Menlo, monospace; margin: 0 0 14px; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 0; }
+  .btn { display: inline-block; padding: 11px 18px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--fg); }
+  .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  a { color: var(--blue); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .card h3 code { font-size: 15px; }
+  ol li, ul li { margin-bottom: 6px; }
+  details { border-bottom: 1px solid var(--line); padding: 12px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 8px 0 0; color: var(--muted); }
+  .note { font-size: 14px; color: var(--muted); border-left: 3px solid var(--yellow); padding-left: 12px; }
+  footer { margin-top: 64px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.png" alt="" width="72" height="72">
+    <h1>Instagram Edits Agent Skills</h1>
+  </header>
+  <p class="lede">Open-source agent skills that let <strong>Claude Code, Codex and Cursor</strong> edit Instagram Reels inside <strong>Instagram Edits for Mac</strong> through its built-in MCP automation server.</p>
+  <div class="bar" aria-hidden="true"><span style="width:64px;background:var(--yellow)"></span><span style="width:32px;background:var(--blue)"></span><span style="width:48px;background:var(--pink)"></span></div>
+
+  <pre><code>npx skills add TaricaTarica/instagram-edits-agent-skills</code></pre>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/TaricaTarica/instagram-edits-agent-skills">View on GitHub</a>
+    <a class="btn" href="#setup">Connect Claude to Edits</a>
+  </div>
+
+  <h2>What the agent does</h2>
+  <p>Edits for Mac gives agents the tools (274 of them). These 14 skills give them the craft: what to cut, how long a hook should stay on screen, where captions are safe from Instagram's UI, how loud a Reel should be, and in which order to do it all.</p>
+  <div class="grid">
+    <div class="card"><h3><code>edits-reel</code></h3><p>Runs the whole pipeline with approval checkpoints.</p></div>
+    <div class="card"><h3><code>edits-rough-cut</code></h3><p>Cuts silences and filler words at word level.</p></div>
+    <div class="card"><h3><code>edits-hook</code></h3><p>Builds the first 3 seconds, a cold open and hook text.</p></div>
+    <div class="card"><h3><code>edits-captions</code></h3><p>Adds auto captions in 39 styles, keeps them in the safe zone and emphasizes keywords.</p></div>
+    <div class="card"><h3><code>edits-polish</code></h3><p>Adds punch-ins, face-aware zooms, B-roll and sound effects.</p></div>
+    <div class="card"><h3><code>edits-audio</code></h3><p>Cleans noise, normalizes to −14 LUFS and ducks music under voice.</p></div>
+    <div class="card"><h3><code>edits-color</code></h3><p>Fixes exposure, white balance and skin, applies LUTs and matches cameras.</p></div>
+    <div class="card"><h3><code>edits-montage</code></h3><p>Cuts to the beat, detects shots and adds speed ramps.</p></div>
+    <div class="card"><h3><code>edits-clip-pick</code></h3><p>Finds the best 15–55 s moments in podcasts and lives.</p></div>
+    <div class="card"><h3><code>edits-cover</code></h3><p>Picks the best frame for the cover and keeps it safe for the 3:4 grid.</p></div>
+    <div class="card"><h3><code>edits-variants</code></h3><p>Makes Trial Reel versions for A/B tests.</p></div>
+    <div class="card"><h3><code>edits-qa</code></h3><p>Reviews frames, exports and validates the file.</p></div>
+    <div class="card"><h3><code>edits-style-learn</code></h3><p>Learns a creator's style from reference Reels.</p></div>
+    <div class="card"><h3><code>edits-operate</code></h3><p>Handles setup, tool discovery and troubleshooting.</p></div>
+  </div>
+  <p class="note" style="margin-top:16px">Tested end to end: a 34 s raw take became a cut, captioned, color-graded Reel at −14 LUFS, exported at 1080×1920 with every QA check passing, in about 16 minutes of agent time.</p>
+
+  <h2 id="setup">How to connect Claude Code to Instagram Edits</h2>
+  <ol>
+    <li>Install <strong>Edits for Mac</strong> (free, Apple silicon) and sign in.</li>
+    <li>In Edits, open <strong>Settings → Automation → Enable Automation Server</strong>. It runs at <code>http://127.0.0.1:19501/mcp</code>.</li>
+    <li>Under <strong>Connect an AI client</strong>, copy the command for Claude Code, Codex, Cursor or ChatGPT and run it in your terminal. Keep the token out of chats.</li>
+    <li>Install the skills and start a new agent session:</li>
+  </ol>
+  <pre><code>npx skills add TaricaTarica/instagram-edits-agent-skills</code></pre>
+  <p>Claude Code plugin instead:</p>
+  <pre><code>/plugin marketplace add TaricaTarica/instagram-edits-agent-skills
+/plugin install instagram-edits-agent-skills@instagram-edits-agent-skills</code></pre>
+
+  <h2>Example prompts</h2>
+  <ul>
+    <li>"Edit <code>~/Movies/launch/take2.mov</code> into a Reel in Edits. Fast pace, karaoke captions, no music."</li>
+    <li>"Cut the silences and the 'ums' in my open Edits project."</li>
+    <li>"This 40-minute podcast is in <code>~/Movies/pod/ep12.mp4</code>. Find the 5 best Reels and build the top 2."</li>
+    <li>"Make 3 Trial Reel versions of this edit with different hooks."</li>
+  </ul>
+
+  <h2>FAQ</h2>
+  <details><summary>How do I edit Instagram Reels with Claude?</summary><p>Turn on the automation server in Edits for Mac, connect Claude Code, install these skills and ask "Edit this into a Reel in Edits." The <code>edits-reel</code> skill makes a plan, asks for your approval and runs the pipeline.</p></details>
+  <details><summary>Is there a Claude skill or plugin for Instagram Edits?</summary><p>Yes. This project is both a Claude Code plugin and a set of open Agent Skills (<code>SKILL.md</code>) for Instagram Edits for Mac.</p></details>
+  <details><summary>Does Instagram Edits have an API or MCP server?</summary><p>There is no public API, but Edits for Mac includes a local MCP automation server (Settings → Automation) that agents can use.</p></details>
+  <details><summary>Can I use Codex, Cursor or ChatGPT with Edits?</summary><p>Yes. Edits shows connect commands for all of them, and the skills follow the open Agent Skills format.</p></details>
+  <details><summary>Can Claude post or schedule my Reels?</summary><p>No. The automation server has no publishing tool. The agent prepares the project and the export; you post from Edits.</p></details>
+  <details><summary>Does it work on Windows or iPhone?</summary><p>No. The automation server exists only in Edits for Mac (Apple silicon).</p></details>
+
+  <footer>
+    <p>MIT licensed · <a href="https://github.com/TaricaTarica/instagram-edits-agent-skills">GitHub</a> · Unofficial project, not affiliated with or endorsed by Meta or Instagram.</p>
+  </footer>
+</main>
+</body>
+</html>
